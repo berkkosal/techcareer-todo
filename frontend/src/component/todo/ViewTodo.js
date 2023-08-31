@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function AddTodo() {
+export default function ViewTodo() {
   return (
     <div>
-      
+      VIEW TODO
     </div>
   )
 }
