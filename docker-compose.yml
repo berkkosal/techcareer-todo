@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: berkkosal
+      POSTGRES_PASSWORD: berkkosal123
+
+  spring-app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
