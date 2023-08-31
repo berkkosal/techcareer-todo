@@ -31,6 +31,7 @@ class TodoRouter extends Component {
                         <Route path='/todo/update/:id' element={<UpdateTodo />} />
                         <Route path='/todo/list' element={<ListTodo />} />
                         <Route path='/todo/view/:id' element={<ViewTodo />} />
+                        <Route path='/todo/filter/:id' element={<FilterTodo/>}/>
 
                         <Route path='*' element={<Navigate to='/' />} />
 
