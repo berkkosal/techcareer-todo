@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
+import TodoApi from '../../services/TodoApi';
 
 export default function ListTodo() {
 
 
   let navigate = useNavigate();
 
-  const [TodoApi, setTodoApi] = useState();
+  const [TodoStateApi, setTodoStateApi] = useState([]);
 
-  // useEffect(()=>{
-  // doldurulacak
-  // })
+  useEffect(() => {
+    TodoApi.todoApiList()
+    .then((response)=>{
+      console.log(response.data);
+      setTodoStateApi(response.data);
+    })
+    .catch((err) => {console.error(err); });
+  })
+
+  //LIST
+
+  //DELETE
 
   //UPDATE
   const setUpdateTodoData = (data) => {
