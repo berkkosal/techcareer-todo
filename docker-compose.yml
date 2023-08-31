@@ -2,13 +2,15 @@ version: '3.1'
 services:
   postgres:
     image: postgres:latest
+    container_name: pgdb
     environment:
       POSTGRES_DB: mydb
       POSTGRES_USER: berkkosal
       POSTGRES_PASSWORD: berkkosal123
 
+
   spring-app:
-    build: .
+    image: todo
     ports:
       - "8080:8080"
     depends_on:
