@@ -38,20 +38,18 @@ public class TodoControllerImpl implements TodoController<TodoDto> {
         return ResponseEntity.status(200).body(todoService.todoServiceFindById(uuid));
     }
 
-    //??????
     @Override
     @PutMapping(value = "/update/{uuid}")
     public ResponseEntity<?> todoApiUpdate(@PathVariable (name = "uuid") UUID uuid, @Valid @RequestBody TodoDto todoDto) {
         return ResponseEntity.ok().body(todoService.todoServiceUpdate(uuid,todoDto));
     }
 
-    //++
+
     @Override
     @DeleteMapping(value = "/delete/{uuid}")
     public ResponseEntity<?> todoApiDeleteById(@PathVariable UUID uuid) {
         return new ResponseEntity<>(todoService.todoServiceDeleteById(uuid),HttpStatus.OK);
     }
 
-    //tüm todoları sil.
 
 }
