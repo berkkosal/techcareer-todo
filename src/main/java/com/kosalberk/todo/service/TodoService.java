@@ -3,6 +3,7 @@ package com.kosalberk.todo.service;
 import com.kosalberk.todo.model.dto.TodoDto;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface TodoService<D, E> {
     //Model mapper
@@ -15,7 +16,13 @@ public interface TodoService<D, E> {
     //List
     public List<D> todoServiceList();
 
+    //Find By
+    public D todoServiceFindById(UUID uuid);
+
+    //Update
+    public D todoServiceUpdate(UUID uuid, D d);
+
     //Delete
-    public D todoServiceDeleteById(Long id);
+    public D todoServiceDeleteById(UUID uuid);
 
 }

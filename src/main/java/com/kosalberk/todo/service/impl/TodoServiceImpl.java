@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
@@ -54,11 +55,37 @@ public class TodoServiceImpl implements TodoService<TodoDto, Todo> {
         return todoDtoList;
 
     }
-
+    //Find By
     @Override
-    public TodoDto todoServiceDeleteById(Long id) {
+    public TodoDto todoServiceFindById(UUID uuid) {
+        Todo findTodo = null;
+        if(uuid!=null){
+            findTodo = todoRepository.findById(uuid)
+                    .orElseThrow(()->new RuntimeException("Id Bulunamadı."));
+
+        }
+        return entitytoDto(findTodo);
+    }
+
+    //Update
+    @Override
+    public TodoDto todoServiceUpdate(UUID uuid, TodoDto todoDto) {
+        TodoDto todoFindDto = todoServiceFindById(uuid);
+        if (todoFindDto!=null){
+            Todo todo = dtoToEntity(todoFindDto);
+            todo.setTitle(todoDto.getTitle());
+            todo.setDescription(todoDto.getDescription());
+            todoRepository.save(todo);
+        }
+        return todoDto;
+    }
+
+    //Delete
+    @Override
+    public TodoDto todoServiceDeleteById(UUID uuid) {
         return null;
     }
+
 
     //Delete
 
