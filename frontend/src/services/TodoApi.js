@@ -7,7 +7,7 @@ class TodoApi {
 
     //CREATE
     todoApiCreate(todoDto) {
-        return axios.post('/create', todoDto)
+        return axios.post('http://localhost:8080/api/create', todoDto)
     }
 
     //LIST

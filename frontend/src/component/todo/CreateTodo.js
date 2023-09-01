@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import TodoApi from '../../services/TodoApi';
-import { withTranslation } from 'react-i18next';
 
 function CreateTodo() {
 
@@ -16,8 +15,8 @@ function CreateTodo() {
   const createTodo = async (event) => {
     event.preventDefault();
     const newTodo = {
-      todoTitle,
-      todoDescription
+      title: todoTitle,
+      description: todoDescription
     }
 
     console.log(newTodo);
@@ -32,30 +31,47 @@ function CreateTodo() {
 
 
   }
-  const todoOnChange = (event) => {
-    const {name,value} = event.target;
+  const todoTitleOnChange = (event) => {
+    const { value } = event.target;
     setTodoTitle(value)
   }
+
+  const todoDescOnChange = (event) => {
+    const { value } = event.target;
+    setTodoDesc(value)
+  }
+
+
 
 
   return (
     <>
-    <form>
+      <form>
         <h2 className="display-3 mt-4">{('todo_title')}</h2>
         <div className="form-group">
           <span>{('todo_title')}</span>
           <input
             type="text"
             className="form-control"
-            placeholder={('todo_title')}
             required={true}
             autoFocus={true}
             id="category_data"
             name="category_data"
-            onChange={todoOnChange}
-          //onChange={(event)=>{setCategoryName(event.target.value)}}
+            onChange={todoTitleOnChange}
+
           />
-          {/* state hatayı bootstrap ile alert ekrana basma */}
+          <span>{('todo_desc')}</span>
+          <input
+            type="text"
+            className="form-control"
+            required={true}
+            autoFocus={true}
+            id="category_data"
+            name="category_data"
+            onChange={todoDescOnChange}
+
+          />
+          
           {error ? <div className="alert alert-danger" role="alert">
             {error.categoryName}
           </div> : ""}
