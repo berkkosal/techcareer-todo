@@ -55,8 +55,8 @@ function CreateTodo() {
             className="form-control"
             required={true}
             autoFocus={true}
-            id="category_data"
-            name="category_data"
+            id="todo_data"
+            name="todo_data"
             onChange={todoTitleOnChange}
 
           />
@@ -66,14 +66,14 @@ function CreateTodo() {
             className="form-control"
             required={true}
             autoFocus={true}
-            id="category_data"
-            name="category_data"
+            id="todo_data"
+            name="todo_data"
             onChange={todoDescOnChange}
 
           />
           
           {error ? <div className="alert alert-danger" role="alert">
-            {error.categoryName}
+            {error.todoTitle}
           </div> : ""}
         </div>
         <button
