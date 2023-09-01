@@ -6,6 +6,8 @@ import lombok.Data;
 
 import java.util.UUID;
 @Data
-@Entity
 public class TodoDto {
+    private UUID uuid;
+    private String title;
+    private String description;
 }
