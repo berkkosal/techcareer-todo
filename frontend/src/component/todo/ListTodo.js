@@ -27,26 +27,51 @@ export default function ListTodo() {
       .catch((err) => { console.error(err); });
   });
 
+  //DELETE
+  const setDeleteTodo = ((id) => {
+    if (window.confirm("Silmek istediğinizden emin misiniz ?")) {
+      TodoApi.categoryApiDeleteById(id)
+        .then(() => {
+          getListTodo();
+        })
+    } else {
+      alert("Silinmedi.")
+    }
+  });
 
-
+  //UPDATE
+  const setUpdateTodo = (data) => {
+    let { uuid, title } = data;
+    localStorage.setItem(uuid);
+    localStorage.setItem(title);
+  }
 
 
 
   return (
     <div>
-      <table>
-      <tbody>
-        {
-          TodoStateApi.map((data) =>
-            <tr key={data.uuid}>
-              <td>{data.uuid}</td>
-              <td>{data.title}</td>
-              <td>{data.description}</td>
-            </tr>
-          )
-        }
-      </tbody>
-      </table>
+      <ul>
+        {TodoStateApi.map((data) => (
+          <li key={data.uuid}>
+            <div>
+              <strong>ID:</strong> {data.uuid}
+            </div>
+            <div>
+              <strong>Title:</strong> {data.title}
+            </div>
+            <div>
+              <strong>Description:</strong> {data.description}
+            </div>
+            <div>
+              <i onClick={() => setUpdateTodo(data)} className="fa-solid fa-pen-to-square text-primary"></i>
+            </div>
+            <div>
+              <i onClick={() => setDeleteTodo(data.id)} className="fa-solid fa-trash text-danger"></i>
+            </div>
+          </li>
+        ))}
+      </ul>
+
     </div>
   )
 }
