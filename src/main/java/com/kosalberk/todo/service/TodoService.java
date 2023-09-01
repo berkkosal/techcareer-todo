@@ -1,7 +1,5 @@
 package com.kosalberk.todo.service;
 
-import com.kosalberk.todo.model.dto.TodoDto;
-
 import java.util.List;
 import java.util.UUID;
 

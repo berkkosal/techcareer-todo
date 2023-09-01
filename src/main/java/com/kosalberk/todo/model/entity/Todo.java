@@ -3,7 +3,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-import java.util.UUID;
 @Data
 @Entity
 @Table(name ="todos")
