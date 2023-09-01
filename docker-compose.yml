@@ -3,15 +3,18 @@ services:
   postgres:
     image: postgres:latest
     container_name: pgdb
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_DB: mydb
       POSTGRES_USER: berkkosal
       POSTGRES_PASSWORD: berkkosal123
 
 
-  spring-app:
-    image: todo
-    ports:
-      - "8080:8080"
-    depends_on:
-      - postgres
+ # spring-app:
+ #   image: todoapp
+ #   ports:
+ #     - "8080:8080"
+ #   depends_on:
+ #     - postgres
+
