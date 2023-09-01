@@ -49,7 +49,7 @@ function CreateTodo() {
       <form>
         <h2 className="display-3 mt-4">{('todo_title')}</h2>
         <div className="form-group">
-          <span>{('todo_title')}</span>
+          <span>Başlık Giriniz.</span>
           <input
             type="text"
             className="form-control"
@@ -60,7 +60,7 @@ function CreateTodo() {
             onChange={todoTitleOnChange}
 
           />
-          <span>{('todo_desc')}</span>
+          <span>Açıklama Giriniz</span>
           <input
             type="text"
             className="form-control"

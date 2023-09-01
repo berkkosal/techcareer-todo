@@ -1,44 +1,52 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router'
 import TodoApi from '../../services/TodoApi';
 
 export default function ListTodo() {
 
 
-  let navigate = useNavigate();
 
   const [TodoStateApi, setTodoStateApi] = useState([]);
 
   useEffect(() => {
     TodoApi.todoApiList()
-    .then((response)=>{
-      console.log(response.data);
-      setTodoStateApi(response.data);
-    })
-    .catch((err) => {console.error(err); });
-  })
+      .then((response) => {
+        console.log(response.data);
+        setTodoStateApi(response.data);
+      })
+      .catch((err) => { console.error(err); });
+  }, []);
+
 
   //LIST
+  const getListTodo = (() => {
+    TodoApi.todoApiList()
+      .then((response) => {
+        console.log(response.data);
+        setTodoStateApi(response.data);
+      })
+      .catch((err) => { console.error(err); });
+  });
 
-  //DELETE
 
-  //UPDATE
-  const setUpdateTodoData = (data) => {
-    let { id, todoName, systemDate } = data;
-    localStorage.setItem('todo_update_id', id);
-    localStorage.setItem('todo_update_name', todoName);
-    localStorage.setItem('todo_update_date', systemDate)
-  };
 
-  //VIEW
-  const setViewTodoData = (id) => {
-    localStorage.setItem('todo_view_id', id)
-  };
+
 
 
   return (
     <div>
-      LIST TODO
+      <table>
+      <tbody>
+        {
+          TodoStateApi.map((data) =>
+            <tr key={data.uuid}>
+              <td>{data.uuid}</td>
+              <td>{data.title}</td>
+              <td>{data.description}</td>
+            </tr>
+          )
+        }
+      </tbody>
+      </table>
     </div>
   )
 }
