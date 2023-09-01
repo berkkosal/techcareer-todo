@@ -3,6 +3,7 @@ package com.kosalberk.todo.controller.impl;
 import com.kosalberk.todo.controller.TodoController;
 import com.kosalberk.todo.model.dto.TodoDto;
 import com.kosalberk.todo.service.TodoService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class TodoControllerImpl implements TodoController<TodoDto> {
     private final TodoService todoService;
     @Override
     @PostMapping("/create")
-    public ResponseEntity<?> todoApiCreate(@RequestBody TodoDto todoDto) {
+    public ResponseEntity<?> todoApiCreate(@Valid @RequestBody TodoDto todoDto) {
         return ResponseEntity.ok(todoService.todoServiceCreate(todoDto));
     }
 

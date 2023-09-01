@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -42,6 +43,12 @@ public class TodoServiceImpl implements TodoService<TodoDto, Todo> {
 
     @Override
     public List<TodoDto> todoServiceList() {
-        return null;
+        Iterable<Todo> entityIterable = todoRepository.findAll();
+        List<TodoDto> todoDtoList = new ArrayList<>();
+        for (Todo todo:entityIterable){
+            TodoDto todoDto=entitytoDto(todo);
+            todoDtoList.add(todoDto);
+        }
+        return todoDtoList;
     }
 }
