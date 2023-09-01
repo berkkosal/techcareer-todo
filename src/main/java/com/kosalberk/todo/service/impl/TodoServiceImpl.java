@@ -83,11 +83,14 @@ public class TodoServiceImpl implements TodoService<TodoDto, Todo> {
     //Delete
     @Override
     public TodoDto todoServiceDeleteById(UUID uuid) {
-        return null;
+        TodoDto todoFindDto = todoServiceFindById(uuid);
+        if (todoFindDto!=null){
+            todoRepository.deleteById(uuid);
+        }
+        return todoFindDto;
     }
 
 
-    //Delete
 
 
 
