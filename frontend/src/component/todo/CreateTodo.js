@@ -70,4 +70,4 @@ function CreateTodo() {
   )
 }
 
-export default withTranslation()(CreateTodo);
+export default CreateTodo;
