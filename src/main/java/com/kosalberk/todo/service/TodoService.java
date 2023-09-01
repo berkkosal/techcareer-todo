@@ -1,5 +1,7 @@
 package com.kosalberk.todo.service;
 
+import com.kosalberk.todo.model.dto.TodoDto;
+
 import java.util.List;
 
 public interface TodoService<D, E> {
@@ -12,5 +14,8 @@ public interface TodoService<D, E> {
 
     //List
     public List<D> todoServiceList();
+
+    //Delete
+    public D todoServiceDeleteById(Long id);
 
 }

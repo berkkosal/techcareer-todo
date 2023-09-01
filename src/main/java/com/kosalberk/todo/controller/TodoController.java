@@ -11,5 +11,6 @@ public interface TodoController<D> {
     //List
     public ResponseEntity<List<D>>  todoApiList();
 
+    //Delete
 
 }

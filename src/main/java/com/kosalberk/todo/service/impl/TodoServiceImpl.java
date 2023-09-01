@@ -28,6 +28,7 @@ public class TodoServiceImpl implements TodoService<TodoDto, Todo> {
         return modelMapper.map(todoDto,Todo.class);
     }
 
+    //Create
     @Override
     public TodoDto todoServiceCreate(TodoDto todoDto) {
         if(todoDto!=null){
@@ -41,6 +42,7 @@ public class TodoServiceImpl implements TodoService<TodoDto, Todo> {
         return todoDto;
     }
 
+    //List
     @Override
     public List<TodoDto> todoServiceList() {
         Iterable<Todo> entityIterable = todoRepository.findAll();
@@ -50,5 +52,18 @@ public class TodoServiceImpl implements TodoService<TodoDto, Todo> {
             todoDtoList.add(todoDto);
         }
         return todoDtoList;
+
     }
+
+    @Override
+    public TodoDto todoServiceDeleteById(Long id) {
+        return null;
+    }
+
+    //Delete
+
+
+
+
+
 }
