@@ -1,9 +1,73 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import TodoApi from '../../services/TodoApi';
+import { withTranslation } from 'react-i18next';
 
-export default function CreateTodo() {
+function CreateTodo() {
+
+  const [todoTitle, setTodoTitle] = useState('');
+  const [todoDescription, setTodoDesc] = useState('')
+  const [error, setError] = useState();
+
+  useEffect(() => {
+    setError(undefined)
+  }, [todoTitle, todoDescription]);
+
+  //CREATE
+  const createTodo = async (event) => {
+    event.preventDefault();
+    const newTodo = {
+      todoTitle,
+      todoDescription
+    }
+
+    console.log(newTodo);
+
+    setError(undefined);
+
+    try {
+      const response = await TodoApi.todoApiCreate(newTodo);
+    } catch (err) {
+      setError(err.response.data.validationErrors);
+    }
+
+
+  }
+  const todoOnChange = (event) => {
+    const {name,value} = event.target;
+    setTodoTitle(value)
+  }
+
+
   return (
-    <div>
-      CREATE TODO
-    </div>
+    <>
+    <form>
+        <h2 className="display-3 mt-4">{('todo_title')}</h2>
+        <div className="form-group">
+          <span>{('todo_title')}</span>
+          <input
+            type="text"
+            className="form-control"
+            placeholder={('todo_title')}
+            required={true}
+            autoFocus={true}
+            id="category_data"
+            name="category_data"
+            onChange={todoOnChange}
+          //onChange={(event)=>{setCategoryName(event.target.value)}}
+          />
+          {/* state hatayı bootstrap ile alert ekrana basma */}
+          {error ? <div className="alert alert-danger" role="alert">
+            {error.categoryName}
+          </div> : ""}
+        </div>
+        <button
+          type='submit'
+          className="btn btn-primary mt-3"
+          disabled={!true}
+          onClick={createTodo}>{('create')}</button>
+      </form>
+    </>
   )
 }
+
+export default withTranslation()(CreateTodo);
