@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
+
 @RequiredArgsConstructor
 @RestController
 @CrossOrigin("*")
@@ -29,7 +31,23 @@ public class TodoControllerImpl implements TodoController<TodoDto> {
         return ResponseEntity.status(HttpStatus.OK).body(todoService.todoServiceList());
     }
 
+    @Override
+    @GetMapping(value = "/find/{uuid}")
+    public ResponseEntity<?> todoApiFindById(@PathVariable UUID uuid) {
+        return ResponseEntity.status(200).body(todoService.todoServiceFindById(uuid));
+    }
 
+    @Override
+    @PutMapping(value = "/update/{uuid}")
+    public ResponseEntity<?> todoApiUpdate(@PathVariable UUID uuid, @Valid @RequestBody TodoDto todoDto) {
+        return ResponseEntity.ok().body(todoService.todoServiceUpdate(uuid,todoDto));
+    }
+
+    @Override
+    @DeleteMapping(value = "/delete/{uuid}")
+    public ResponseEntity<?> todoApiDeleteById(@PathVariable UUID uuid) {
+        return new ResponseEntity<>(todoService.todoServiceDeleteById(uuid),HttpStatus.OK);
+    }
 
 
 }

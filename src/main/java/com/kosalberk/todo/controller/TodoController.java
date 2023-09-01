@@ -2,6 +2,7 @@ package com.kosalberk.todo.controller;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface TodoController<D> {
 
@@ -11,6 +12,14 @@ public interface TodoController<D> {
     //List
     public ResponseEntity<List<D>>  todoApiList();
 
-    //Delete
+    //Find By
+    public ResponseEntity<?>  todoApiFindById(UUID uuid);
+
+    // UPDATE
+    public ResponseEntity<?>  todoApiUpdate(UUID uuid,D d);
+
+    // DELETE
+    public ResponseEntity<?>  todoApiDeleteById(UUID uuid);
+
 
 }
